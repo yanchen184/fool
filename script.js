@@ -64,7 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-        // 愚人節訊息 (保留但不會使用，因為我們將使用自定義訊息)
+    // 愚人節訊息
+    const prankMessages = [
+        "函螢是笨蛋！你以為輸入別人的名字就有用嗎哈哈哈"
+    ];
+
 
     // 假的載入訊息
     const loadingMessages = [
@@ -191,14 +195,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // 等待幾秒後顯示愚人節惡作劇
         setTimeout(() => {
             // 隨機選擇一個愚人節訊息
-            const prankMessage = prankMessages[Math.floor(Math.random() * prankMessages.length)];
+            const prankMessage = prankMessages[0];
             
             // 更新結果內容
             resultDetails.style.display = 'none';
             prankReveal.classList.remove('hidden');
             
-            // 設置固定的愚人節訊息
-            document.getElementById('prank-message').textContent = "函螢是笨蛋！你以為輸入別人的名字就有用嗎哈哈哈";
+            // 設置愚人節訊息
+            document.getElementById('prank-message').textContent = prankMessage;
+            
+            console.log('顯示愚人節訊息:', prankMessage); // 測試用
         }, 3000);
     }
 
@@ -231,7 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
             prankReveal.classList.remove('hidden');
             
             // 使用固定的愚人節訊息
-            document.getElementById('prank-message').textContent = "函螢是笨蛋！你以為輸入別人的名字就有用嗎哈哈哈";
+            document.getElementById('prank-message').textContent = prankMessages[0];
+            console.log('從URL顯示愚人節訊息:', prankMessages[0]); // 測試用
         }
     }
 
