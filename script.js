@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingScreen = document.getElementById('loading-screen');
     const resultScreen = document.getElementById('result-screen');
     const startBtn = document.getElementById('start-btn');
+    const userNameInput = document.getElementById('user-name');
     const questionText = document.getElementById('question-text');
     const optionsContainer = document.getElementById('options-container');
     const progress = document.getElementById('progress');
@@ -63,14 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // 愚人節訊息
-    const prankMessages = [
-        "這些答案顯示你是一個容易被騙的人！愚人節快樂！",
-        "分析結果：你非常容易相信網上的測試！愚人節快樂！",
-        "恭喜你！你剛剛被愚人節惡作劇了！",
-        "測試結論：你喜歡點擊按鈕！愚人節快樂！",
-        "你知道這只是個愚人節玩笑，但還是做完了測試！幽默感滿分！"
-    ];
+        // 愚人節訊息 (保留但不會使用，因為我們將使用自定義訊息)
 
     // 假的載入訊息
     const loadingMessages = [
@@ -86,6 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 開始測試
     startBtn.addEventListener('click', function() {
+        // 檢查用戶是否輸入了名字
+        if (!userNameInput.value.trim()) {
+            alert('請輸入您的姓名！');
+            return;
+        }
+        
         welcomeScreen.classList.remove('active');
         questionScreen.classList.add('active');
         showQuestion(currentQuestion);
@@ -197,18 +197,18 @@ document.addEventListener('DOMContentLoaded', function() {
             resultDetails.style.display = 'none';
             prankReveal.classList.remove('hidden');
             
-            // 添加訊息
-            const messageElement = document.createElement('p');
-            messageElement.textContent = prankMessage;
-            prankReveal.insertBefore(messageElement, prankReveal.querySelector('#prank-gif'));
+            // 設置固定的愚人節訊息
+            document.getElementById('prank-message').textContent = "函螢是笨蛋！你以為輸入別人的名字就有用嗎哈哈哈";
         }, 3000);
     }
 
     // 分享按鈕功能
     shareBtn.addEventListener('click', function() {
-        // 這裡可以根據需要添加社交媒體分享功能
-        // 簡單的方法是通過URL參數來傳遞
-        const shareUrl = window.location.href + '?prank=true';
+        // 獲取用戶名字
+        const userName = userNameInput ? userNameInput.value.trim() : '';
+        
+        // 創建帶有用戶名的分享URL
+        const shareUrl = window.location.href.split('?')[0] + `?prank=true&userName=${encodeURIComponent(userName)}`;
         
         // 複製鏈接到剪貼板
         navigator.clipboard.writeText(shareUrl).then(() => {
@@ -230,11 +230,8 @@ document.addEventListener('DOMContentLoaded', function() {
             resultDetails.style.display = 'none';
             prankReveal.classList.remove('hidden');
             
-            // 添加訊息
-            const prankMessage = prankMessages[Math.floor(Math.random() * prankMessages.length)];
-            const messageElement = document.createElement('p');
-            messageElement.textContent = prankMessage;
-            prankReveal.insertBefore(messageElement, prankReveal.querySelector('#prank-gif'));
+            // 使用固定的愚人節訊息
+            document.getElementById('prank-message').textContent = "函螢是笨蛋！你以為輸入別人的名字就有用嗎哈哈哈";
         }
     }
 

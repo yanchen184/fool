@@ -171,3 +171,39 @@ button:hover {
 .hidden {
     display: none;
 }
+
+.name-input-container {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #4b6cb7;
+    outline: none;
+    box-shadow: 0 0 5px rgba(75, 108, 183, 0.4);
+}
+
+#prank-message {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ff4757;
+    margin: 15px 0;
+}
